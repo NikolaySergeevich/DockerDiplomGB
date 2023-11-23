@@ -1,0 +1,31 @@
+
+version: '3.9'
+
+services:
+
+  tg:
+    image: tgbot
+    container_name: tg
+    restart: always
+    command: sh -c "sleep 10s ; python3 ./main.py"
+    volumes:
+      - ./home:/home/log
+      - ./res_img:/home/result_img
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      - sqlForDB
+
+  sqlForDB:
+    image: tgsql
+    container_name: sqlForDB
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'botgb'
+      MYSQL_ROOT_PASSWORD: 'pop'
+    ports:
+      - '3308:3306'
+    volumes:
+      - ./lib:/var/lib/mysql
+

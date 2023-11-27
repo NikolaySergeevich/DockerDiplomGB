@@ -1,5 +1,4 @@
 
-
 USE botgb;
 
 CREATE TABLE users
@@ -47,26 +46,24 @@ INSERT INTO users (user_id, date_add_user) VALUES ('tester', NOW());
 INSERT INTO users (user_id, date_add_user) VALUES ('analist', NOW());
 INSERT INTO users (user_id, date_add_user) VALUES ('project', NOW());
 INSERT INTO users (user_id, date_add_user) VALUES ('prodact', NOW());
+INSERT INTO users (user_id, date_add_user) VALUES ('843471051', NOW());
+
 
 INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = 'developer');
 INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = 'tester');
 INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = 'analist');
 INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = 'project');
 INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = 'prodact');
+INSERT INTO capabilities (user_id) SELECT (SELECT id FROM users WHERE user_id = '843471051');
 
 UPDATE capabilities SET `extrovert` = '2', `introvert` = '3', `ability_to_work_monotonously` = '4', `mentoring` = '0', `analytical_skills` = '4', `empathy` = '2', `curiosity` = '5', `oratory` = '0', `organizational_skills` = '1', `critical_thinking` = '3', `multitasking` = '3', `creativity` = '1', `stress_resistance` = '4', `time_control` = '3', `working_with_a_large_amount_of_information` = '5' WHERE (`id` = '1');
 UPDATE capabilities SET `extrovert` = '2', `introvert` = '2', `ability_to_work_monotonously` = '5', `mentoring` = '0', `analytical_skills` = '3', `empathy` = '3', `curiosity` = '4', `oratory` = '0', `organizational_skills` = '1', `critical_thinking` = '3', `multitasking` = '3', `creativity` = '1', `stress_resistance` = '2', `time_control` = '3', `working_with_a_large_amount_of_information` = '3' WHERE (`id` = '2');
 UPDATE capabilities SET `extrovert` = '3', `introvert` = '4', `ability_to_work_monotonously` = '3', `mentoring` = '0', `analytical_skills` = '5', `empathy` = '2', `curiosity` = '4', `oratory` = '1', `organizational_skills` = '2', `critical_thinking` = '5', `multitasking` = '3', `creativity` = '3', `stress_resistance` = '3', `time_control` = '2', `working_with_a_large_amount_of_information` = '4' WHERE (`id` = '3');
 UPDATE capabilities SET `extrovert` = '4', `introvert` = '1', `ability_to_work_monotonously` = '1', `mentoring` = '3', `analytical_skills` = '3', `empathy` = '4', `curiosity` = '3', `oratory` = '4', `organizational_skills` = '5', `critical_thinking` = '3', `multitasking` = '5', `creativity` = '3', `stress_resistance` = '5', `time_control` = '5', `working_with_a_large_amount_of_information` = '4' WHERE (`id` = '4');
 UPDATE capabilities SET `extrovert` = '3', `introvert` = '2', `ability_to_work_monotonously` = '3', `mentoring` = '3', `analytical_skills` = '3', `empathy` = '4', `curiosity` = '2', `oratory` = '4', `organizational_skills` = '4', `critical_thinking` = '3', `multitasking` = '5', `creativity` = '2', `stress_resistance` = '4', `time_control` = '4', `working_with_a_large_amount_of_information` = '3' WHERE (`id` = '5');
+UPDATE capabilities SET `extrovert` = '3', `introvert` = '2', `ability_to_work_monotonously` = '3', `mentoring` = '3', `analytical_skills` = '3', `empathy` = '4', `curiosity` = '2', `oratory` = '4', `organizational_skills` = '4', `critical_thinking` = '3', `multitasking` = '5', `creativity` = '2', `stress_resistance` = '4', `time_control` = '4', `working_with_a_large_amount_of_information` = '3' WHERE (`id` = '6');
 
-
-UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information WHERE user_id = '1';
-UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information WHERE user_id = '2';
-UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information WHERE user_id = '3';
-UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information WHERE user_id = '4';
-UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information WHERE user_id = '5';
-
+UPDATE capabilities SET sum_general_bals = extrovert + introvert + ability_to_work_monotonously + mentoring + analytical_skills + empathy + curiosity + oratory + organizational_skills + critical_thinking + multitasking + creativity + stress_resistance + time_control + working_with_a_large_amount_of_information;
 
 
 -- SELECT EXISTS(SELECT user_id FROM users WHERE user_id = 'developer');
@@ -120,11 +117,13 @@ DELIMITER ;
 
 
 -- процедура возвращет строку из таблицы capabilities  по id пользователя
+
 -- DROP PROCEDURE get_value_capabilities;
 DELIMITER //
 CREATE PROCEDURE get_value_capabilities (IN IdUser VARCHAR(25))
 BEGIN
-	SELECT *
+	SELECT extrovert, introvert, ability_to_work_monotonously, mentoring, analytical_skills, empathy, curiosity, oratory, organizational_skills, critical_thinking,
+               multitasking, creativity, stress_resistance, time_control, working_with_a_large_amount_of_information
     FROM capabilities
     WHERE user_id = (SELECT id FROM users WHERE user_id = IdUser);
 END//

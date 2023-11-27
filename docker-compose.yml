@@ -16,6 +16,8 @@ services:
       replicas: 1
     depends_on:
       - sqlForDB
+    networks:
+      - app-network
 
   sqlForDB:
     image: tgsql
@@ -28,4 +30,10 @@ services:
       - '3308:3306'
     volumes:
       - ./lib:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 

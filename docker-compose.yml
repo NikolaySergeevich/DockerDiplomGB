@@ -9,7 +9,7 @@ services:
     restart: always
     command: sh -c "sleep 10s ; python3 ./main.py"
     volumes:
-      - ./home:/home/log
+      - ./log:/home/log
       - ./res_img:/home/result_img
     deploy:
       mode: replicated

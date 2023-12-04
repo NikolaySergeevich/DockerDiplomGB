@@ -7,7 +7,7 @@ ENV PORT="3306"
 ENV USER="root"
 ENV PASSWORD="pop"
 ENV DB_NAME="botgb"
-#RUN apt-get update && apt-get install -y apt-transport-https
+
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -19,6 +19,3 @@ RUN pip install --force-reinstall -v "aiogram==2.23.1" && \
     mkdir log && \
     mkdir result_img
 COPY *.py ./
-
-#ENTRYPOINT ["python", "main.py"]
-#ENTRYPOINT ["python", "main.py"]

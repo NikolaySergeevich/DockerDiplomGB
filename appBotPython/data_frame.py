@@ -22,7 +22,3 @@ def get_data_frame_only_value(data):
     for i in t.get_list_whis_title_on_english():
         list.append(data[i])
     return list
-
-def dataTest(user_id):
-    data = db.get_value_capabilities(user_id)
-    return data

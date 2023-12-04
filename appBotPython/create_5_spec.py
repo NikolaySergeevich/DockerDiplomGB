@@ -77,7 +77,3 @@ def plt_result(us_id):
     way = t.get_way_of_img(us_id)#путь и название для картинки
     plt.savefig(way)
 
-
-# for i in t.name_specific:
-#     plt_result(i)
-

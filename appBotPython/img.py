@@ -5,7 +5,8 @@ from matplotlib.ticker import NullFormatter
 import text as t
 from sqlyghter import Sqloghter
 
-db = Sqloghter()
+#db =Sqloghter()
+db = wor.db
 
 def plt_result(us_id):
     N = 15

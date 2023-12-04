@@ -29,26 +29,6 @@ async def start(message: types.Message):
     	for i in t.name_specific:
     	    create_5_spec.plt_result(i)
 
-@dp.message_handler(commands=['test'])
-async def startrr(message: types.Message):
-    test = wor.dataTest(message.from_user.id)
-    await bot.send_message(message.from_user.id, test)
-
-@dp.message_handler(commands=['test2'])
-async def start(message: types.Message):
-    test = wor.get_data_frame(message.from_user.id)
-    await bot.send_message(message.from_user.id, test)
-
-@dp.message_handler(commands=['test3'])
-async def start(message: types.Message):
-    test = db.giv_volue_compare("sum_bals_compare_with_analist", "843471051")
-    await bot.send_message(message.from_user.id, test)
-
-@dp.message_handler(commands=['test4'])
-async def start(message: types.Message):
-    test = db.giv_volue_compare("extrovert", message.from_user.id)
-    await bot.send_message(message.from_user.id, test)
-
 @dp.message_handler(commands=['go_test'])
 async def start(message: types.Message):
     if(db.check_exists_user(message.from_user.id) == 0):

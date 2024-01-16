@@ -1,11 +1,11 @@
 FROM python:3.11.1
 
 WORKDIR /home
-ENV API_TOKEN="5939481567:AAH0d5sCi4z-oIkdRrIgBmECGQE3B8UVilQ"
+ENV API_TOKEN="token_your_bot"
 ENV HOST="sqlForDB"
 ENV PORT="3306"
 ENV USER="root"
-ENV PASSWORD="pop"
+ENV PASSWORD="your_password"
 ENV DB_NAME="botgb"
 
 ENV TZ=Europe/Moscow
